@@ -72,6 +72,12 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 
 // Transaction makes payment of X units from A to B
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+	if len(args) != 3 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 4")
+		fmt.Println("Error: para is not 3")
+		log.fatal("Error: param is not 3")
+	}
+	
 	if function == "delete" {
 		// Deletes an entity from its state
 		return t.delete(stub, args)
